@@ -3,6 +3,7 @@
 #include <SDL/SDL.h>
 #include "graphics.h"
 #include "sorts.h"
+#include "paths.h"
 
 int main(void)
 {
@@ -10,6 +11,13 @@ int main(void)
     int length = 100;
     int array[length];
 
+    for (int i = 0; i < length; i++)
+        array[i] = i;
+
+    basic_path(array, length, 41);
+    wait_for_keypressed();
+    binary_path(array, length, 41);
+/*
     for (int i = 0; i < length; i++)
         array[i] = rand() % length;
     bubble_sort(array, 20);
@@ -24,6 +32,7 @@ int main(void)
         array[i] = rand() % length;
     select_sort(array, length);
 
+*/
 
     wait_for_keypressed();
 

@@ -3,10 +3,12 @@
 #include <SDL/SDL.h>
 #include "graphics.h"
 #include "sorts.h"
+#include "paths.h"
 
 
 //               a-r-g-b-
 Uint32 red   = 0xffff0000;
+Uint32 red2  = 0xffff5500;
 Uint32 green = 0xff00ff00;
 Uint32 blue  = 0xff0000ff;
 Uint32 white = 0xffffffff;
@@ -88,6 +90,7 @@ void set_pixel(int x, int y, Uint32 pixel)
     }
 }
 
+
 Uint32 get_pixel(int x, int y)
 {
     int bpp = surface->format->BytesPerPixel;
@@ -133,11 +136,13 @@ void draw_array(int array[],
 {
     int max = array_max(array, length);
     int v = surface->h / max;
-    int l = surface->w / (length);
-    for (int i = 0; i < length; i += 1)
-        draw_row(i * l + 2, array[i] * v - 6, l - 4, color);
-}
+    int l = surface->w / length;
+    for (int i = 0; i < length; i += 2)
+        draw_row(i * l, array[i] * v - 10, l, red);
 
+    for (int i = 1; i < length; i += 2)
+        draw_row(i * l, array[i] * v - 10, l, red2);
+}
 
 int array_max(int array[], int length)
 {
@@ -150,11 +155,23 @@ int array_max(int array[], int length)
     return max;
 }
 
+
 void fill(Uint32 color)
 {
     for (int i = 1; i < surface->w; i++)
     {
         for (int j = 1; j < surface->h; j++)
             set_pixel(i, j, color);
+    }
+}
+
+
+void draw_arrow(int array[], int length, int index, Uint32 color)
+{
+    int max = array_max(array, length);
+    for (int n = surface->h - 1; n >= surface->h - (array[index] * surface->h / max) + 10; n--)
+    {
+        for (int k = 1; k < (surface->w / length) + 1; k++)
+            set_pixel((index * (surface->w / length) - 1) + k, n, color);
     }
 }

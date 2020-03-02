@@ -11,7 +11,7 @@ LDFLAGS = -lSDL -lSDL_mixer
 # libs and path for linker
 LDLIBS =
 
-SRC = main.c graphics.c sorts.c
+SRC = main.c graphics.c sorts.c paths.c
 
 OBJ = ${SRC:.c=.o}
 # add list of dependency files
