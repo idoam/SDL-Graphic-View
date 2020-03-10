@@ -5,11 +5,11 @@ CC =  gcc
 # options for pre-processor (-I, -include, -D, ...)
 CPPFLAGS = -MMD
 # main compilation options
-CFLAGS = -g -Wall -Wextra -std=c99 -O0
+CFLAGS = -g -Wall -Wextra -std=c99 -O0 `pkg-config --cflags gtk+-3.0`
 # Linker options (probably always empty)
 LDFLAGS = -lSDL -lSDL_mixer
 # libs and path for linker
-LDLIBS =
+LDLIBS = -lm `pkg-config --libs gtk+-3.0` -export-dynamic
 
 SRC = main.c graphics.c sorts.c paths.c
 
