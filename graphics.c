@@ -131,8 +131,7 @@ void draw_row(int i, int h, int l, Uint32 color)
 }
 
 
-void draw_array(int array[], 
-        int length, Uint32 color)
+void draw_array(int array[], int length)
 {
     int max = array_max(array, length);
     int v = surface->h / max;
@@ -158,9 +157,9 @@ int array_max(int array[], int length)
 
 void fill(Uint32 color)
 {
-    for (int i = 1; i < surface->w; i++)
+    for (int i = 0; i < surface->w; i++)
     {
-        for (int j = 1; j < surface->h; j++)
+        for (int j = 0; j < surface->h; j++)
             set_pixel(i, j, color);
     }
 }

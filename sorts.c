@@ -3,10 +3,6 @@
 #include "sorts.h"
 #include "graphics.h"
 
-Uint32 redd = 0xffff0000;
-Uint32 delay = 0x00000010;
-
-
 void bubble_sort(int array[], int length)
 {
     display_image();
@@ -18,9 +14,8 @@ void bubble_sort(int array[], int length)
             {
                 swap(array, k, k+1);
                 fill(0xff000000);
-                draw_array(array, length, redd);
+                draw_array(array, length);
                 display_image();
-                SDL_Delay(delay);
             }
         }
     }
@@ -36,12 +31,11 @@ void insert_sort(int array[], int length)
         while (j >= 0 && array[j] > key)
         {
             array[j + 1] = array[j];
-            fill(0xff000000);
-            draw_array(array, length, redd);
-            display_image();
-            SDL_Delay(delay);
             j--;
         }
+        fill(0xff000000);
+        draw_array(array, length);
+        display_image();
         array[j + 1] = key;
     }
 }
@@ -58,16 +52,14 @@ void select_sort(int array[], int length)
             if (array[j] < array[indexMin])
                 indexMin = j;
         }
-
         if(indexMin != i)
         {
             int temp = array[indexMin];
             array[indexMin] = array[i];
             array[i] = temp;
             fill(0xff000000);
-            draw_array(array, length, redd);
+            draw_array(array, length);
             display_image();
-            SDL_Delay(delay);
         }
     }
 }
@@ -80,6 +72,7 @@ void swap(int array[], int i, int j)
     array[i] = array[j];
     array[j] = temp;
 }
+
 
 void display_array(int array[], int length)
 {

@@ -6,15 +6,16 @@
 Uint32 reddd =  0xffff0000;
 Uint32 blueee = 0xff0000ff;
 Uint32 greennn= 0xff00ff00;
-Uint32 delayy = 0x00000100;
+Uint32 cyan = 0xff00ffff;
 
 int basic_path(int array[], int length, int target)
 {
     for (int i = 0; i < length; i++)
     {
         fill(0xff000000);
-        draw_array(array, length, reddd);
+        draw_array(array, length);
         draw_arrow(array, length, i, greennn);
+        draw_arrow(array, length, target, cyan);
         display_image();
 
         if (array[i] == target)
@@ -28,7 +29,7 @@ int basic_path(int array[], int length, int target)
 }
 
 
-int binary_path(int array[], int length, int target)
+int binary_path(int array[], int length, int target, int show_steps)
 {
     int lowerBound = 0;
     int upperBound = length -1;
@@ -38,11 +39,13 @@ int binary_path(int array[], int length, int target)
     while (lowerBound <= upperBound) 
     {
         fill(0xff000000);
-        draw_array(array, length, reddd);
+        draw_array(array, length);
         draw_arrow(array, length, lowerBound, greennn);
         draw_arrow(array, length, upperBound, greennn);
+        draw_arrow(array, length, target, cyan);
         display_image();
-        //SDL_Delay(delayy);
+        if (show_steps)
+            wait_for_keypressed();
 
         midPoint = lowerBound + (upperBound - lowerBound) / 2;
 
@@ -62,7 +65,7 @@ int binary_path(int array[], int length, int target)
     }
 
     fill(0xff000000);
-    draw_array(array, length, reddd);
+    draw_array(array, length);
     draw_arrow(array, length, index, blueee);
     display_image();
 
