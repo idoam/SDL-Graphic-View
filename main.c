@@ -81,7 +81,7 @@ void launch_graphics()
     if (show_bubble)
     {
         iterations = (int)gtk_spin_button_get_value(bubble_iterations);
-        create_environment((iterations * 6) * 200/iterations, (iterations * 4) * 200/iterations);
+        create_environment((iterations * 6) * (int)(200/iterations), (iterations * 4) * (int)(200/iterations));
 
         for (int i = 0; i < length; i++)
             array[i] = rand() % length;
@@ -94,7 +94,7 @@ void launch_graphics()
     if (show_insert)
     {
         iterations = (int)gtk_spin_button_get_value(insert_iterations);
-        create_environment((iterations * 6) * 200/iterations, (iterations * 4) * 200/iterations);
+        create_environment((iterations * 6) * (int)(200/iterations), (iterations * 4) * (int)(200/iterations));
 
         for (int i = 0; i < length; i++)
             array[i] = rand() % length;
